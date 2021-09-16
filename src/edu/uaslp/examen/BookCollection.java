@@ -18,11 +18,6 @@ public class BookCollection {
     }
 
     public void addBook(Book book){
-        book.setTitle(book.getTitle());
-        book.setAuthor(book.getAuthor());
-        book.setIsbn(book.getIsbn());
-        book.setStars(book.getStars());
-
         books.add(book);
     }
 
@@ -31,12 +26,10 @@ public class BookCollection {
     }
 
     public int getStars(){
-        int numStars=0, cont=0;
+        int numStars=0;
         for(Book book:books){
-            numStars=numStars+book.getStars();
-            cont++;
+            numStars+=book.getStars();
         }
-        numStars=numStars/cont;
-        return numStars;
+        return numStars/ books.size();
     }
 }

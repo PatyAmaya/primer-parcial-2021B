@@ -17,7 +17,7 @@ public class BookCollectionManager {
 
     public BookCollection getCollectionByName(String name){
         for(BookCollection bookCollection:collections){
-            if(name==bookCollection.getName()){
+            if(bookCollection.getName().equals(name)){
                 return bookCollection;
             }
         }
@@ -26,22 +26,21 @@ public class BookCollectionManager {
 
     public void deleteCollectionByName(String name){
         for(BookCollection bookCollection:collections){
-            if(name==bookCollection.getName()){
+            if(bookCollection.getName().equals(name)){
                 collections.remove(bookCollection);
+                return;
             }
         }
     }
 
     public void addBookToCollection(String collectionName, Book book){
-        for(BookCollection bookCollection:collections){
-            if(collectionName==bookCollection.getName()){
-                bookCollection.addBook(book);
-                return;
-            }
+       //Forma correcta
+        BookCollection bookCollection=getCollectionByName(collectionName);
+        if(bookCollection==null){
+            bookCollection=createCollection(collectionName);
         }
-        BookCollection bookCollection = new BookCollection(collectionName);
         bookCollection.addBook(book);
-        collections.add(bookCollection);
+
     }
 
     public ArrayList<String> getCollectionNames(){
